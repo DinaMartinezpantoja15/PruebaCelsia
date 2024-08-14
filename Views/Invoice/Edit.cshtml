@@ -1,0 +1,44 @@
+@model PruebaCelsia.ViewModels.InvoiceVM
+
+@{
+    ViewData["Title"] = "Edit Invoice";
+}
+
+<h2>Edit Invoice</h2>
+
+<h4>Invoice</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="InvoiceNumber" class="control-label"></label>
+                <input asp-for="InvoiceNumber" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="InvoicePeriod" class="control-label"></label>
+                <input asp-for="InvoicePeriod" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="BilledAmount" class="control-label"></label>
+                <input asp-for="BilledAmount" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PaidAmount" class="control-label"></label>
+                <input asp-for="PaidAmount" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

@@ -1,0 +1,45 @@
+@model PruebaCelsia.ViewModels.InvoiceVM
+
+<h2>Detalles de la Factura</h2>
+
+<div>
+    <h4>Factura @Model.InvoiceNumber</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Período de Facturación
+        </dt>
+        <dd class="col-sm-10">
+            @Model.InvoicePeriod
+        </dd>
+        <dt class="col-sm-2">
+            Monto Facturado
+        </dt>
+        <dd class="col-sm-10">
+            @Model.BilledAmount
+        </dd>
+        <dt class="col-sm-2">
+            Monto Pagado
+        </dt>
+        <dd class="col-sm-10">
+            @Model.PaidAmount
+        </dd>
+        <dt class="col-sm-2">
+            Estado
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Status
+        </dd>
+        <dt class="col-sm-2">
+            Usuario
+        </dt>
+        <dd class="col-sm-10">
+            @Model.UserName (@Model.UserEmail)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Volver al Listado</a>
+</div>

@@ -1,0 +1,72 @@
+@model PruebaCelsia.Helpers.PaginatedList<PruebaCelsia.Models.Transaction>
+
+@{
+    ViewData["Title"] = "View Transactions";
+}
+
+<h2>View Transactions</h2>
+<div>
+    <a asp-action="ExportTransactionsToExcel" class="btn btn-primary">Export to Excel</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="ViewTransactions" asp-route-sortOrder="@ViewData["CodeSortParm"]">Transaction Code</a>
+            </th>
+            <th>
+                <a asp-action="ViewTransactions" asp-route-sortOrder="@ViewData["DateSortParm"]">Transaction Date</a>
+            </th>
+            <th>
+                <a asp-action="ViewTransactions" asp-route-sortOrder="@ViewData["AmountSortParm"]">Transaction Amount</a>
+            </th>
+            <th>Transaction Status</th>
+            <th>Invoice Number</th>
+            <th>Invoice Period</th>
+            <th>Billed Amount</th>
+            <th>Paid Amount</th>
+            <th>Invoice Status</th>
+            <th>User Name</th>
+            <th>User Email</th>
+            <th>User Phone</th>
+            <th>Payment Method</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var transaction in Model)
+        {
+            <tr>
+                <td>@transaction.CodigoTransacción</td>
+                <td>@transaction.TransactionDate.ToString("yyyy-MM-dd")</td>
+                <td>@transaction.Amount</td>
+                <td>@transaction.TransactionStatus</td>
+                <td>@transaction.Invoice?.InvoiceNumber</td>
+                <td>@transaction.Invoice?.InvoicePeriod</td>
+                <td>@transaction.Invoice?.BilledAmount</td>
+                <td>@transaction.Invoice?.PaidAmount</td>
+                <td>@transaction.Invoice?.Status</td>
+                <td>@transaction.Invoice?.User?.Name</td>
+                <td>@transaction.Invoice?.User?.Email</td>
+                <td>@transaction.Invoice?.User?.Phone</td>
+                <td>@transaction.PaymentMethod?.MethodName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    Page @Model.PageIndex of @Model.TotalPages
+</div>
+
+<div>
+    @if (Model.HasPreviousPage)
+    {
+        <a asp-action="ViewTransactions" asp-route-pageNumber="@(Model.PageIndex - 1)" asp-route-sortOrder="@ViewData["CurrentSort"]">Previous</a>
+    }
+
+    @if (Model.HasNextPage)
+    {
+        <a asp-action="ViewTransactions" asp-route-pageNumber="@(Model.PageIndex + 1)" asp-route-sortOrder="@ViewData["CurrentSort"]">Next</a>
+    }
+</div>
